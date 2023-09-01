@@ -29,11 +29,13 @@ const NavLink = ({ href, children }: Props) => {
     <li
       className={`${
         isLinkHighlighted ? "font-bold text-blue-600" : "hover:text-blue-500"
-      } text-lg underline-offset-4 decoration-zinc-800 decoration-2 transition-colors duration-300`}
+      } text-lg underline-offset-4 decoration-zinc-800 decoration-2 transition-colors duration-300 text-center flex justify-center items-center`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={href}>{children}</Link>
+      <Link className="w-full h-full" href={href}>
+        {children}
+      </Link>
     </li>
   )
 }

@@ -94,6 +94,7 @@ const Gallery = ({ images }: Props) => {
                     className="h-64 object-cover w-full block"
                     width={300}
                     height={300}
+                    priority
                   />
                   <figcaption className="text-center text-sm mt-2">
                     {alt}
@@ -113,13 +114,14 @@ const Gallery = ({ images }: Props) => {
         </div>
       </div>
       <DialogContent>
-        <figure className="h-full flex flex-col justify-center items-center">
+        <figure className="flex flex-col justify-center items-center">
           <Image
             src={images[currImgIndex].src}
             alt={images[currImgIndex].alt ?? "project image"}
-            className="object-contain max-h-full"
-            width={1000}
-            height={400}
+            className="object-cover"
+            width={500}
+            height={300}
+            priority
           />
           <figcaption className="text-center text-sm mt-2">
             {images[currImgIndex].alt}

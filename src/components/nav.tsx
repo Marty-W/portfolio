@@ -1,4 +1,3 @@
-import { useCallback } from "react"
 import NavLink from "./navLink"
 
 const LINKS = [
@@ -11,7 +10,7 @@ const LINKS = [
 const Nav = () => {
   return (
     <nav>
-      <ul className="flex justify-between space-x-4 py-2">
+      <ul className="flex justify-between py-2">
         {LINKS.map(({ href, text }) => {
           return (
             <NavLink href={href} key={href}>

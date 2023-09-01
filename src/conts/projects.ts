@@ -1,6 +1,6 @@
 interface Project {
-  slug: string
   name: string
+  slug: string
   techstack: string[]
   description: string
   githubUrl: string
@@ -14,8 +14,8 @@ export interface CarouselImg {
   alt?: string
 }
 
-export const PROJECTS: Project[] = [
-  {
+export const PROJECTS: { [slug: string]: Project } = {
+  habitsync: {
     slug: "habitsync",
     name: "HabitSync",
     techstack: [
@@ -28,58 +28,57 @@ export const PROJECTS: Project[] = [
     ],
     description: "A habit tracking app that syncs with your Todoist account",
     githubUrl: "https://github.com/Marty-W/habitsync",
-    websiteUrl: "/",
-    imageUrl: "/project_images/habitsync/1.png",
+    websiteUrl: "https://habitsync.app",
+    imageUrl: "/project_images/habitsync/1.webp",
     carouselImgs: [
       {
-        src: "/project_images/habitsync/1.png",
+        src: "/project_images/habitsync/1.webp",
         alt: "Landing Page",
       },
       {
-        src: "/project_images/habitsync/2.png",
+        src: "/project_images/habitsync/2.webp",
         alt: "Desktop Dashboard",
       },
       {
-        src: "/project_images/habitsync/3.png",
+        src: "/project_images/habitsync/3.webp",
         alt: "Dark mode",
       },
 
       {
-        src: "/project_images/habitsync/4.png",
+        src: "/project_images/habitsync/4.webp",
         alt: "Project sync",
       },
       {
-        src: "/project_images/habitsync/5.png",
+        src: "/project_images/habitsync/5.webp",
         alt: "Mobile dashboard",
       },
       {
-        src: "/project_images/habitsync/6.png",
+        src: "/project_images/habitsync/6.webp",
         alt: "Mobile habit list",
       },
       {
-        src: "/project_images/habitsync/7.png",
+        src: "/project_images/habitsync/7.webp",
         alt: "Mobile settings",
       },
       {
-        src: "/projects/habitsync/8.png",
+        src: "/project_images/habitsync/8.webp",
         alt: "Mobile landing page",
       },
       {
-        src: "/projects/habitsync/9.png",
+        src: "/project_images/habitsync/9.webp",
         alt: "Dark mode dashboard",
       },
     ],
   },
-  {
+  portfolio: {
     slug: "portfolio",
     name: "Portfolio",
     techstack: ["Astro.js", "React"],
     description: "My personal portfolio website",
     githubUrl: "https://github.com/Marty-W/portfolio",
-    websiteUrl: "https://martinweber.dev",
-    imageUrl: "/project_images/portfolio/landing.png",
+    imageUrl: "/project_images/portfolio/thumbnail.png",
   },
-  {
+  "swiss-knife": {
     slug: "swiss-knife",
     name: "SwissKnife",
     techstack: ["React", "Typescript", "Firebase"],
@@ -114,7 +113,7 @@ export const PROJECTS: Project[] = [
       },
     ],
   },
-  {
+  "old-portfolio": {
     slug: "old-portfolio",
     name: "Old portfolio",
     techstack: ["React", "Javascript"],
@@ -128,7 +127,7 @@ export const PROJECTS: Project[] = [
       { src: "/project_images/old-portfolio/3.png" },
     ],
   },
-  {
+  dotfiles: {
     slug: "dotfiles",
     name: "Dotfiles",
     techstack: ["nvim", "yabai", "skhd", "zsh", "tmux", "wezterm"],
@@ -141,4 +140,4 @@ export const PROJECTS: Project[] = [
       { src: "/project_images/dotfiles/3.png" },
     ],
   },
-]
+}

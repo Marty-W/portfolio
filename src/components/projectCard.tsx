@@ -30,6 +30,7 @@ const ProjectCard = ({
         className="rounded-t-lg w-full mb-4 object-cover h-48"
         width={500}
         height={300}
+        priority
       />
       <div className="flex flex-col justify-between space-y-4">
         <h3 className="text-2xl font-semibold mb-2">{projectName}</h3>

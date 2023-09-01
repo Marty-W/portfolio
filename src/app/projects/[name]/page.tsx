@@ -1,5 +1,5 @@
 import { PROJECTS } from "@/conts/projects"
-import { ArrowLeft, Github, PlaneTakeoff } from "lucide-react"
+import { ArrowLeft, Github, Link2 } from "lucide-react"
 import Link from "next/link"
 import {
   Dotfiles,
@@ -19,9 +19,8 @@ const SLUG_DICT = {
 }
 
 const Project = ({ params }: { params: { name: string } }) => {
-  const { name, githubUrl, websiteUrl, carouselImgs } = PROJECTS.find(
-    (project) => project.slug === params.name,
-  )!
+  const { name, githubUrl, websiteUrl, carouselImgs } = PROJECTS[params.name]
+
   return (
     <>
       <div className="flex justify-between items-center mb-6 px-4 py-2">
@@ -33,23 +32,23 @@ const Project = ({ params }: { params: { name: string } }) => {
         </Link>
         <h1 className="text-2xl font-semibold text-slate-800">{name}</h1>
         <div className="flex space-x-4">
-          <a
+          <Link
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-slate-400 transition duration-300"
           >
             <Github className="w-8 h-8" />
-          </a>
+          </Link>
           {websiteUrl && (
-            <a
+            <Link
               href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-slate-400 transition duration-300"
             >
-              <PlaneTakeoff className="w-8 h-8" />
-            </a>
+              <Link2 className="w-8 h-8" />
+            </Link>
           )}
         </div>
       </div>
