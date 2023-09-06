@@ -1,24 +1,14 @@
 "use client"
 import FormThankYou from "@/components/formThankYou"
 import PageWithHeader from "@/components/pageWithHeader"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { FormEvent, useState } from "react"
 import useWeb3Forms from "@web3forms/react"
+import FormLoadingSkeleton from "@/components/formLoadingSkeleton"
+
+type CurrentState = "initial" | "loading" | "success" | "error"
 
 const Contact = () => {
-  //TODO register inputs
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-    control,
-    setValue,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
-  } = useForm({
-    mode: "onTouched",
-  })
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [currentState, setCurrentState] = useState<CurrentState>("initial")
   const [message, setMessage] = useState("")
 
   const apiKey = "d94f227c-efc1-48f4-9a69-4277be6fc8b6"
@@ -26,21 +16,33 @@ const Contact = () => {
   const { submit: onSubmit } = useWeb3Forms({
     access_key: apiKey,
     settings: {
-      from_name: "Acme Inc",
-      subject: "New Contact Message from your Website",
+      subject: "New Contact Message from Portfolio",
     },
     onSuccess: () => {
-      setIsSuccess(true)
+      setCurrentState("success")
     },
     onError: (msg) => {
-      setIsSuccess(false)
+      setCurrentState("error")
       setMessage(msg)
     },
   })
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setCurrentState("loading")
+    const formData = new FormData(event.currentTarget)
+    const { name, email, message } = Object.fromEntries(formData.entries())
+
+    onSubmit({
+      name,
+      email,
+      message,
+    })
+  }
+
   return (
     <PageWithHeader headerText="Let's connect">
-      {!isSuccess ? (
+      {currentState === "initial" && (
         <div className="mx-auto px-4 md:px-0 max-w-3xl mb-5">
           <p className="leading-8 text-center mx-auto mb-6">
             If you&apos;re looking for a dedicated developer to bring your
@@ -50,10 +52,7 @@ const Contact = () => {
             asset to your team!
           </p>
           <div className="p-6">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="space-y-4 flex flex-col"
-            >
+            <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
               <div>
                 <label
                   htmlFor="name"
@@ -114,9 +113,9 @@ const Contact = () => {
           </div>
           {message && <p>{message}</p>}
         </div>
-      ) : (
-        <FormThankYou />
       )}
+      {currentState === "loading" && <FormLoadingSkeleton />}
+      {currentState === "success" && <FormThankYou />}
     </PageWithHeader>
   )
 }

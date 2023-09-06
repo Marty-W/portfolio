@@ -1,12 +1,12 @@
 import Header from "@/components/header"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Instrument_Sans } from "next/font/google"
 import Footer from "@/components/footer"
 import { AnimatedHeroProvider } from "@/hooks/useAnimatedHero"
 import { Analytics } from "@vercel/analytics/react"
 
-const inter = Inter({ subsets: ["latin"] })
+const font = Instrument_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Martin Weber",
@@ -33,7 +33,9 @@ export default function RootLayout({
           <div className="shadow-sm">
             <Header />
           </div>
-          <main className="py-16 container flex-1">{children}</main>
+          <main className={`py-16 container flex-1 ${font.className}`}>
+            {children}
+          </main>
           <Footer />
         </AnimatedHeroProvider>
         <Analytics />
