@@ -16,9 +16,8 @@ const MyJourney = () => {
           In 2022, the path led me to <strong>01People</strong>. I contributed
           to a health-focused project, building an app that bridged the
           communication gap between users and their doctors. This shift in scope
-          was incredibly rewarding. During this time, I also ventured into{" "}
-          <strong>React Native</strong>, expanding the app&apos;s reach across
-          multiple platforms.
+          was incredibly rewarding. During this time, I also ventured into React
+          Native, expanding the app&apos;s reach across multiple platforms.
         </p>
         <p className="leading-8 mt-6 text-center mx-auto">
           After a six-month personal hiatus, my passion for tech remains
