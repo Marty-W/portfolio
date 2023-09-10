@@ -104,7 +104,10 @@ const Gallery = ({ images }: Props) => {
             ))}
           </div>
           <div className="flex justify-center space-x-4 pt-6">
-            <button className="embla__prev" onClick={scrollPrev}>
+            <button
+              className="embla__prev active:translate-y-1"
+              onClick={scrollPrev}
+            >
               <MoveLeft size={30} />
             </button>
             <button className="embla__next" onClick={scrollNext}>

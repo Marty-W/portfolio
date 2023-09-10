@@ -48,8 +48,10 @@ const Contact = () => {
             If you&apos;re looking for a dedicated developer to bring your
             project to life, or if you have any questions about my work,
             don&apos;t hesitate to reach out. I&apos;m always open to new
-            opportunities and collaborations. Let&apos;s discuss how I can be an
-            asset to your team!
+            opportunities and collaborations.
+          </p>
+          <p className="text-center">
+            Let&apos;s discuss how I can be an asset to your team!
           </p>
           <div className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
@@ -105,7 +107,7 @@ const Contact = () => {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-600 hover:from-blue-400 hover:via-indigo-500 hover:to-purple-600 text-white font-semibold p-2 rounded-md mx-auto w-full transition duration-300"
+                className="bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-600 hover:from-blue-400 hover:via-indigo-500 hover:to-purple-600 text-white font-semibold p-2 rounded-md mx-auto w-full transition-all duration-500 bg-[position:_0%_0%] hover:bg-[position:_100%_100%] bg-[size:_200%]"
               >
                 Submit
               </button>

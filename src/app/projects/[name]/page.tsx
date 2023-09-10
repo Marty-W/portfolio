@@ -1,5 +1,5 @@
 import { PROJECTS } from "@/conts/projects"
-import { ArrowLeft, Github, Link2 } from "lucide-react"
+import { MoveLeft, Github, Link2 } from "lucide-react"
 import Link from "next/link"
 import {
   Dotfiles,
@@ -28,9 +28,20 @@ const Project = ({ params }: { params: { name: string } }) => {
           href="/projects"
           className="hover:text-slate-400 transition duration-300"
         >
-          <ArrowLeft className="w-8 h-8" />
+          <MoveLeft className="w-8 h-8" />
         </Link>
-        <h1 className="text-2xl font-semibold text-slate-800">{name}</h1>
+        {websiteUrl ? (
+          <Link
+            href={websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            <h1 className="text-2xl font-semibold text-slate-800">{name}</h1>
+          </Link>
+        ) : (
+          <h1 className="text-2xl font-semibold text-slate-800">{name}</h1>
+        )}
         <div className="flex space-x-4">
           <Link
             href={githubUrl}
