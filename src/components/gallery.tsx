@@ -1,5 +1,5 @@
 "use client"
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import { flushSync } from "react-dom"
 import Image from "next/image"
 import useEmblaCarousel from "embla-carousel-react"
@@ -49,12 +49,33 @@ const Gallery = ({ images }: Props) => {
   }, [emblaApi, setTweenValues])
 
   const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev()
-  }, [emblaApi])
+    if (emblaApi) {
+      emblaApi.scrollPrev()
+      const newIndex = (currImgIndex - 1) % images.length
+      setCurrImgIndex(newIndex > 0 ? newIndex : images.length - 1)
+    }
+  }, [emblaApi, images.length, currImgIndex])
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext()
-  }, [emblaApi])
+    if (emblaApi) {
+      emblaApi.scrollNext()
+      const newIndex = (currImgIndex + 1) % images.length
+      setCurrImgIndex(newIndex < images.length ? newIndex : 0)
+    }
+  }, [emblaApi, images.length, currImgIndex])
+
+  useEffect(() => {
+    //add keyboard scroll functionality
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        scrollPrev()
+      } else if (e.key === "ArrowRight") {
+        scrollNext()
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [scrollPrev, scrollNext])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -103,30 +124,32 @@ const Gallery = ({ images }: Props) => {
               </DialogTrigger>
             ))}
           </div>
-          <div className="flex justify-center space-x-4 pt-6">
+          <div className="flex justify-center space-x-4 pt-6 transition-all">
             <button
-              className="embla__prev active:translate-y-1"
+              className="active:scale-95 hover:opacity-70"
               onClick={scrollPrev}
             >
               <MoveLeft size={30} />
             </button>
-            <button className="embla__next" onClick={scrollNext}>
+            <button
+              className="embla__next active:scale-95 hover:opacity-70"
+              onClick={scrollNext}
+            >
               <MoveRight size={30} />
             </button>
           </div>
         </div>
       </div>
       <DialogContent>
-        <figure className="flex flex-col justify-center items-center">
+        <figure className="h-full w-full relative">
           <Image
             src={images[currImgIndex].src}
             alt={images[currImgIndex].alt ?? "project image"}
-            className="object-cover"
-            width={500}
-            height={300}
+            className="object-contain"
+            fill
             priority
           />
-          <figcaption className="text-center text-sm mt-2">
+          <figcaption className="text-center text-sm inset-x-0 top-0 z-10">
             {images[currImgIndex].alt}
           </figcaption>
         </figure>

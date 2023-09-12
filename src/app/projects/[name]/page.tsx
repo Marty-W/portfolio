@@ -24,11 +24,8 @@ const Project = ({ params }: { params: { name: string } }) => {
   return (
     <>
       <div className="flex justify-between items-center mb-6 px-4 py-2">
-        <Link
-          href="/projects"
-          className="hover:text-slate-400 transition duration-300"
-        >
-          <MoveLeft className="w-8 h-8" />
+        <Link href="/projects">
+          <MoveLeft className="w-8 h-8 hover:opacity-70 active:scale-95" />
         </Link>
         {websiteUrl ? (
           <Link
@@ -47,7 +44,7 @@ const Project = ({ params }: { params: { name: string } }) => {
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-slate-400 transition duration-300"
+            className="hover:opacity-70"
           >
             <Github className="w-8 h-8" />
           </Link>
@@ -56,7 +53,7 @@ const Project = ({ params }: { params: { name: string } }) => {
               href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-slate-400 transition duration-300"
+              className="hover:opacity-70"
             >
               <Link2 className="w-8 h-8" />
             </Link>

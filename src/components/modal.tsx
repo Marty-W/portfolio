@@ -11,7 +11,7 @@ export const DialogContent = React.forwardRef<
       <DialogPrimitive.Content
         {...props}
         ref={forwardedRef}
-        className="m-auto p-8 z-10 bg-white rounded-lg max-w-[80vw] max-h-[90vh]"
+        className="m-auto p-8 z-10 bg-white rounded-lg w-[80vw] h-[90vh]"
       >
         {children}
       </DialogPrimitive.Content>
