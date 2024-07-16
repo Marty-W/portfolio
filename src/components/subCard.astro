@@ -1,0 +1,65 @@
+---
+interface Props {
+  className?: string
+  highlightOnHover?: boolean
+}
+
+const { className, highlightOnHover = false } = Astro.props
+---
+
+<div
+  class:list={[
+    "relative rounded-lg border-[1px] bg-neutral-100 p-3",
+    highlightOnHover && "border__animation",
+    className,
+  ]}
+>
+  <slot />
+</div>
+
+<style>
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  :root {
+    --clr-1: #052b2f;
+    --clr-2: #073438;
+    --clr-3: #0e4b50;
+    --clr-4: #2d8f85;
+    --clr-5: #637c54;
+  }
+
+  .border__animation:hover::before,
+  .border__animation:hover::after {
+    content: "";
+    position: absolute;
+    inset: -0.4rem;
+    z-index: 2;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--clr-3),
+      var(--clr-4),
+      var(--clr-5),
+      var(--clr-4),
+      var(--clr-3)
+    );
+    border-radius: inherit;
+    animation: rotation 20s linear infinite;
+  }
+
+  .border__animation:hover::after {
+    filter: blur(0.2rem);
+  }
+
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+</style>

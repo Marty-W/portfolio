@@ -1,0 +1,21 @@
+---
+import Card from "@components/bentoCard.astro"
+import AnimatedBorder from "@components/animatedBorder.astro"
+import { getCollection } from "astro:content"
+import { PROJECTS } from "../../const"
+---
+
+<Card title="latest projects">
+  <div class="space-y-4">
+    {
+      PROJECTS.map(({ title, description, href }) => (
+        <AnimatedBorder>
+          <a href={href}>
+            <h4 class="font-semibold">{title}</h4>
+            <p>{description}</p>
+          </a>
+        </AnimatedBorder>
+      ))
+    }
+  </div>
+</Card>

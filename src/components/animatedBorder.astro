@@ -1,0 +1,87 @@
+---
+interface Props {
+  className?: string
+}
+
+const { className } = Astro.props
+---
+
+<div
+  class:list={[
+    "border__animation relative block cursor-pointer rounded-lg border-[1px] border-neutral-300 bg-neutral-100 p-[var(--border-width)] before:inset-0 after:inset-0",
+    className,
+  ]}
+>
+  <div
+    class="border__inner p-[calc(var(--border-width) + 0.75rem)] relative z-10 rounded-lg bg-neutral-100"
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  :root {
+    --clr-2: #d4d4d4;
+    --clr-1: #a3a3a3;
+    --clr-3: #f87171;
+    --border-width: 3px; /* Default border width */
+  }
+
+  .border__animation {
+    position: relative;
+    --border-width: 2px; /* Adjust this to control the border width */
+    padding: var(--border-width); /* Use the custom property for padding */
+  }
+
+  .border__animation::before,
+  .border__animation::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    z-index: 0;
+    background: transparent; /* Ensure no background when not hovered */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+    inset: 0; /* Cover full area */
+  }
+
+  .border__animation:hover::before,
+  .border__animation:hover::after {
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--clr-1),
+      var(--clr-2),
+      var(--clr-3),
+      var(--clr-2),
+      var(--clr-1)
+    );
+    animation: rotation 2s ease-out infinite;
+  }
+
+  .border__animation:hover::after {
+    filter: blur(0.1rem);
+  }
+
+  .border__inner {
+    position: relative;
+    z-index: 1;
+    background: inherit; /* Ensure inner content has the same background */
+    padding: calc(
+      var(--border-width) + 0.75rem
+    ); /* Adjust padding based on border width */
+  }
+
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+</style>

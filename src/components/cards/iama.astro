@@ -1,0 +1,23 @@
+---
+import Card from "@components/bentoCard.astro"
+import { SlotsText } from "@components/slotsText.tsx"
+
+const ANIMATED_PHRASES = [
+  "arsenal fan",
+  "nvim enthusiast",
+  "fresh father",
+  "cancer survivor",
+  "frontend dev",
+  "tea enjoyer",
+]
+---
+
+<!-- <Card className="h-[90px]"> -->
+<div
+  class="flex flex-wrap items-center justify-center space-x-4 font-display text-lg"
+>
+  <div class="flex-1">
+    <SlotsText phrases={ANIMATED_PHRASES} client:load />
+  </div>
+</div>
+<!-- </Card> -->

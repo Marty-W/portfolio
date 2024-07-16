@@ -1,0 +1,43 @@
+---
+import Card from "@components/bentoCard.astro"
+---
+
+<Card>
+  <form
+    class="mx-auto max-w-lg rounded-lg p-3"
+    method="POST"
+    action="/send-message"
+  >
+    <div class="mb-4">
+      <label class="mb-2 block text-sm font-bold text-gray-700" for="email">
+        Email
+      </label>
+      <input
+        class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+        id="email"
+        type="email"
+        placeholder="Your Email"
+        required
+      />
+    </div>
+    <div class="mb-4">
+      <label class="mb-2 block text-sm font-bold text-gray-700" for="message">
+        Message
+      </label>
+      <textarea
+        class="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+        id="message"
+        rows="5"
+        placeholder="Your Message"
+        required></textarea>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        class="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+        type="submit"
+      >
+        Send Message
+      </button>
+    </div>
+  </form>
+</Card>

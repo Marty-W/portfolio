@@ -1,0 +1,18 @@
+---
+import Card from "@components/bentoCard.astro"
+import { Image } from "astro:assets"
+import HeadshotImg from "../../images/headshot.png"
+import { getGradient, cn } from "src/utils"
+
+const gradient = getGradient()
+---
+
+<Card
+  className=`flex mx-auto w-fit items-end justify-center p-0 lg:mx-0 lg:pt-5`
+>
+  <Image
+    src={HeadshotImg}
+    alt="selfie"
+    class="m-auto aspect-auto h-[300px] w-auto bg-transparent"
+  />
+</Card>

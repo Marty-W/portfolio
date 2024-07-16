@@ -1,0 +1,34 @@
+---
+import Card from "@components/bentoCard.astro"
+import UnderlinedAnimatedText from "@components/underlinedAnimatedText.astro"
+import Iama from "./iama.astro"
+---
+
+<Card title="about me" className="bento-card group">
+  <div class="space-y-6">
+    <div class="space-y-4">
+      <p>Hi there! I am Martin Weber.</p>
+      <p>
+        I'm a passionate developer who <UnderlinedAnimatedText>
+          loves coding
+        </UnderlinedAnimatedText> and diving into technical details. Whether it's
+        building applications, crafting my Neovim config, or customizing my split
+        keyboard, I thrive on
+        <UnderlinedAnimatedText
+          class="text-neutral-950 underline decoration-red-300 underline-offset-2"
+          >solving problems</UnderlinedAnimatedText
+        >
+        and exploring
+        <UnderlinedAnimatedText
+          class="text-neutral-950 underline decoration-red-300 underline-offset-2"
+          >new technologies</UnderlinedAnimatedText
+        >. As the go-to tech guy in my family, I've always enjoyed the challenge
+        of making things work seamlessly.
+      </p>
+      <p>
+        My journey has taught me resilience and the importance of focus, which I
+        bring to every project I work on.
+      </p>
+    </div>
+  </div>
+</Card>
