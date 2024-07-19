@@ -1,4 +1,4 @@
-import { defineCollection, z, reference } from "astro:content"
+import { defineCollection, z } from "astro:content"
 
 const projectCollection = defineCollection({
   type: "content",
@@ -8,7 +8,14 @@ const projectCollection = defineCollection({
       ghLink: z.string().url(),
       siteLink: z.string().url(),
       description: z.string(),
+      longDescription: z.string(),
       coverImage: image(),
+      images: z.array(
+        z.object({
+          src: image(),
+          description: z.string(),
+        }),
+      ),
     }),
 })
 

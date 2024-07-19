@@ -12,11 +12,16 @@ const { title, className } = Astro.props
 
 <div
   class={cn(
-    "w-full h-full z-[1] space-y-4 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-6 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-md",
+    "relative w-full h-full z-[1] space-y-4 rounded-lg border-[1px] border-neutral-300 bg-neutral-50 p-6 shadow-sm transition-shadow duration-200 ease-in-out hover:shadow-md",
     className,
   )}
 >
-  {title && <h3 class="font-display text-2xl text-neutral-950">{title}</h3>}
+  <div class="flex items-center gap-x-2">
+    <div class="*:h-6 *:w-6">
+      <slot name="icon" />
+    </div>
+    {title && <h3 class="font-display text-2xl text-neutral-950">{title}</h3>}
+  </div>
   <div class="text-neutral-600">
     <slot />
   </div>

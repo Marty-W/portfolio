@@ -10,17 +10,3 @@ export const GRADIENTS = [
   "bg-gradient-to-r from-fuchsia-500 to-cyan-500",
   "bg-gradient-to-r from-slate-500 to-stone-700",
 ]
-
-export const PROJECTS = [
-  {
-    title: "Eastercup",
-    description:
-      "User-facing website and internal tool for international youth basketball tournament.",
-    href: "/eastercup",
-  },
-  {
-    title: "Habitsync",
-    description: "Web app that helps you track your habits when using Todoist.",
-    href: "/habitsync",
-  },
-]

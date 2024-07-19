@@ -2,19 +2,20 @@ import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
 import ImageModal from "./imageModal"
 import { useCallback, useState } from "react"
-import Image from "astro:assets"
 import type { ImageMetadata } from "astro"
 
-interface Props {
-  projectId: string
+interface Image {
+  src: ImageMetadata
+  description: string
 }
 
-export default function EmbedGallery({ projectId }: Props) {
+interface Props {
+  images: Image[]
+}
+
+export default function EmbedGallery({ images }: Props) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
   const [dialogOpen, setDialogOpen] = useState(false)
-  const images = import.meta.glob<{ default: ImageMetadata }>(
-    `/src/images/**.{png,jpg,jpeg,webp,avif}`,
-  )
   const scrollPrev = () => useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = () => useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
@@ -22,11 +23,9 @@ export default function EmbedGallery({ projectId }: Props) {
     <div>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="grid auto-cols-[60%] grid-flow-col">
-          {/* {images.map((image, index) => ( */}
-          {/*   <div> */}
-          {/*     <img src={image.src} alt={image.alt} /> */}
-          {/*   </div> */}
-          {/* ))} */}
+          {images.map((image, index) => (
+            <img src={image.src.src} alt={image.description} />
+          ))}
         </div>
       </div>
       <div className="flex justify-center space-x-2">

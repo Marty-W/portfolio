@@ -1,0 +1,65 @@
+---
+import TableOfContents from "@components/tableOfContents.astro"
+import CommonHead from "@components/layouts/commonHead.astro"
+import ProjectLinks from "@components/projectLinks.astro"
+import EmbedGallery from "@components/embedGallery"
+import { getCollection } from "astro:content"
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("project")
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
+}
+
+const { title, ghLink, siteLink, coverImage, images, longDescription } =
+  Astro.props.entry.data
+
+const { Content, headings } = await Astro.props.entry.render()
+---
+
+<html lang="en">
+  <CommonHead />
+  <body class="bg-neutral-100 font-body">
+    <div class="mb-4 space-y-4">
+      <div class="bg-gradient-to-t from-neutral-800 to-transparent">
+        <div
+          style=`background-image: url(${coverImage.src});`
+          class:list={["mx-auto h-[35vh] max-w-[65ch] bg-cover bg-top"]}
+        >
+          <div
+            class="flex h-full w-full items-end justify-between bg-gradient-to-t from-neutral-800 to-transparent p-5"
+          >
+            <ProjectLinks ghLink={ghLink} siteLink={siteLink} />
+            <div
+              class="text-center font-display text-3xl font-semibold text-neutral-50"
+            >
+              <h2>{title}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-3">
+        <article class="prose prose-neutral col-start-2 mx-auto mt-0">
+          <div>
+            <h2 id="description">Description</h2>
+            <p>{longDescription}</p>
+          </div>
+          <EmbedGallery images={images} />
+          <Content />
+        </article>
+        <div class="col-start-3">
+          <div class="sticky top-0">
+            <TableOfContents
+              headings={[
+                { text: "Description", depth: 2, slug: "description" },
+                ...headings,
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
