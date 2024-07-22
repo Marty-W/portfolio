@@ -1,7 +1,7 @@
 ---
 import TableOfContents from "@components/tableOfContents.astro"
 import CommonHead from "@components/layouts/commonHead.astro"
-import ProjectLinks from "@components/projectLinks.astro"
+import ProjectLink from "@components/projectLink.astro"
 import EmbedGallery from "@components/embedGallery"
 import { getCollection } from "astro:content"
 
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   }))
 }
 
-const { title, ghLink, siteLink, coverImage, images, longDescription } =
+const { title, ghLink, siteLink, images, longDescription } =
   Astro.props.entry.data
 
 const { Content, headings } = await Astro.props.entry.render()
@@ -22,35 +22,54 @@ const { Content, headings } = await Astro.props.entry.render()
 <html lang="en">
   <CommonHead />
   <body class="bg-neutral-100 font-body">
-    <div class="mb-4 space-y-4">
-      <div class="bg-gradient-to-t from-neutral-800 to-transparent">
+    <main class="container lg:py-28 xl:contain-none">
+      <div
+        class="mx-auto flex flex-col gap-y-8 lg:col-start-2 xl:grid xl:grid-cols-[0.4fr_1fr_0.4fr] xl:grid-rows-[auto_auto_auto_1fr]"
+      >
         <div
-          style=`background-image: url(${coverImage.src});`
-          class:list={["mx-auto h-[35vh] max-w-[65ch] bg-cover bg-top"]}
+          class="mx-auto flex w-full items-center justify-between pt-12 xl:col-start-2"
         >
-          <div
-            class="flex h-full w-full items-end justify-between bg-gradient-to-t from-neutral-800 to-transparent p-5"
-          >
-            <ProjectLinks ghLink={ghLink} siteLink={siteLink} />
-            <div
-              class="text-center font-display text-3xl font-semibold text-neutral-50"
+          <a href="/"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              class="group h-10 w-10 cursor-pointer fill-neutral-800 transition-all hover:fill-neutral-100"
             >
-              <h2>{title}</h2>
-            </div>
-          </div>
+              <g
+                stroke-linejoin="round"
+                stroke-width="4"
+                class="stroke-neutral-800"
+              >
+                <path
+                  d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  d="m27 33l-9-9l9-9"
+                  class="stroke-neutral-100 group-hover:stroke-neutral-800"
+                ></path>
+              </g>
+            </svg></a
+          >
+          <h1 class="text-5xl font-bold" transition:name={`${title} title`}>
+            {title}
+          </h1>
         </div>
-      </div>
-      <div class="grid grid-cols-3">
-        <article class="prose prose-neutral col-start-2 mx-auto mt-0">
-          <div>
-            <h2 id="description">Description</h2>
-            <p>{longDescription}</p>
-          </div>
-          <EmbedGallery images={images} />
+        <div class="flex justify-center gap-x-4 xl:col-start-2">
+          <ProjectLink href={ghLink} text="github" />
+          <ProjectLink href={siteLink} text="site" />
+        </div>
+        <div class="flex flex-col gap-y-8 xl:col-start-2">
+          <p class="text-lg leading-8">{longDescription}</p>
+          <EmbedGallery images={images} client:only />
+        </div>
+        <article
+          class="prose prose-neutral lg:prose-lg mx-auto max-w-none select-none xl:col-start-2"
+        >
           <Content />
         </article>
-        <div class="col-start-3">
-          <div class="sticky top-0">
+        <div class="not-prose col-start-3 row-start-4 hidden pl-7 xl:block">
+          <div class="sticky top-8">
             <TableOfContents
               headings={[
                 { text: "Description", depth: 2, slug: "description" },
@@ -60,6 +79,6 @@ const { Content, headings } = await Astro.props.entry.render()
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>

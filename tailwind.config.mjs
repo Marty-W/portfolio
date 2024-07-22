@@ -12,9 +12,14 @@ export default {
           "0%": { transform: "translateY(-3%)", opacity: 0, rotate: "-0.5deg" },
           "100%": { transform: "translateY(0%)", opacity: 1, rotate: "0deg" },
         },
+        fadein: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
       },
       animation: {
         land: "land 0.5s ease-in",
+        fadein: "fadein 1.5s ease-in",
       },
     },
     container: {

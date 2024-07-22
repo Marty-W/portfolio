@@ -17,7 +17,11 @@ const grouppedHeadings = headings.reduce((array, heading) => {
 }, [] as HeadingWithSubheadings[])
 ---
 
-<nav id="table-of-contents" aria-label="Table Of Contents">
+<nav
+  id="table-of-contents text-sm"
+  aria-label="Table Of Contents"
+  class="select-none"
+>
   <ol>
     {
       grouppedHeadings.map((h) => (
@@ -51,7 +55,20 @@ const grouppedHeadings = headings.reduce((array, heading) => {
 </script>
 
 <style>
-  .active-toc-item {
-    font-weight: bold;
+  a {
+    background-position-y: -0%;
+    background-image: linear-gradient(180deg, transparent 50%, black 50%);
+    transition: all 0.1s ease;
+    background-size: 2px;
+    background-size: auto 190%;
+    padding: 3px 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover {
+    background-position-y: 100%;
+    color: white;
+    transition: all 0.1s ease;
   }
 </style>

@@ -9,7 +9,6 @@ const projectCollection = defineCollection({
       siteLink: z.string().url(),
       description: z.string(),
       longDescription: z.string(),
-      coverImage: image(),
       images: z.array(
         z.object({
           src: image(),

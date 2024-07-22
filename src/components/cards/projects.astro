@@ -12,7 +12,10 @@ const allProjects = await getCollection("project")
       allProjects.map(({ data: { title, description }, slug }) => (
         <AnimatedBorder>
           <a href={`/projects/${slug}`}>
-            <h4 class="font-semibold">{title}</h4>
+            <!-- <h4 class="font-semibold" transition:name={`${title} title`}> -->
+            <h4 class="font-semibold">
+              {title}
+            </h4>
             <p>{description}</p>
           </a>
         </AnimatedBorder>

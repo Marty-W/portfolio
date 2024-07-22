@@ -1,7 +1,7 @@
 ---
 import "@fontsource-variable/karla"
 import "@fontsource-variable/inconsolata"
-import { ViewTransitions } from "astro:transitions"
+import { ViewTransitions, fade } from "astro:transitions"
 ---
 
 <!-- TODO: add nicer ViewTransitions -->
@@ -11,5 +11,5 @@ import { ViewTransitions } from "astro:transitions"
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
   <title>Martin Weber</title>
-  <ViewTransitions />
+  <ViewTransitions transition:animate={fade({ duration: "0.4s" })} />
 </head>

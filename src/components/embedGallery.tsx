@@ -1,7 +1,7 @@
 import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
 import ImageModal from "./imageModal"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import type { ImageMetadata } from "astro"
 
 interface Image {
@@ -14,26 +14,76 @@ interface Props {
 }
 
 export default function EmbedGallery({ images }: Props) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({})])
   const [dialogOpen, setDialogOpen] = useState(false)
-  const scrollPrev = () => useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-  const scrollNext = () => useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+  const [activeImage, setActiveImage] = useState<number | null>(null)
+
+  const handleImageClick = (clickedImageIndex: number) => {
+    setActiveImage(clickedImageIndex)
+    setDialogOpen(true)
+  }
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  const navigateImage = (direction: -1 | 1) => {
+    if (activeImage === null) return
+
+    const newIndex = (activeImage + direction + images.length) % images.length
+    setActiveImage(newIndex)
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (event: React.KeyboardEvent<Element>) => {
+      if (!dialogOpen) return
+
+      switch (event.key) {
+        case "ArrowLeft":
+          navigateImage(-1)
+          break
+        case "ArrowRight":
+          navigateImage(1)
+          break
+        default:
+          break
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [activeImage])
 
   return (
-    <div>
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="grid auto-cols-[60%] grid-flow-col">
+    <div className="animate-fadein flex flex-col space-y-4">
+      <div className="max-h-[40vh] overflow-hidden" ref={emblaRef}>
+        <div className="grid auto-cols-[60%] grid-flow-col gap-x-4">
           {images.map((image, index) => (
-            <img src={image.src.src} alt={image.description} />
+            <img
+              src={image.src.src}
+              alt={image.description}
+              onClick={() => handleImageClick(index)}
+              style={{
+                flex: "0 0 100%",
+                minWidth: 0,
+              }}
+            />
           ))}
         </div>
       </div>
-      <div className="flex justify-center space-x-2">
+      <div className="flex justify-center space-x-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"
-          className="group h-6 w-6 cursor-pointer fill-neutral-100 hover:fill-neutral-800"
-          onClick={scrollPrev()}
+          className="group h-8 w-8 cursor-pointer fill-neutral-100 hover:fill-neutral-800 active:translate-y-[0.4px]"
+          onClick={scrollPrev}
         >
           <g
             stroke-linejoin="round"
@@ -50,9 +100,9 @@ export default function EmbedGallery({ images }: Props) {
         </svg>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="group h-6 w-6 cursor-pointer fill-neutral-100 hover:fill-neutral-800 active:translate-y-[0.4px]"
+          className="group h-8 w-8 cursor-pointer fill-neutral-100 hover:fill-neutral-800 active:translate-y-[0.4px]"
           viewBox="0 0 48 48"
-          onClick={scrollNext()}
+          onClick={scrollNext}
         >
           <g
             stroke="currentColor"
@@ -72,8 +122,8 @@ export default function EmbedGallery({ images }: Props) {
       <ImageModal
         open={dialogOpen}
         closeDialog={() => setDialogOpen(false)}
-        src="https://placehold.co/600x400"
-        alt="placeholder"
+        src={images[activeImage as number]?.src.src}
+        alt={images[activeImage as number]?.description}
       />
     </div>
   )
