@@ -24,7 +24,7 @@ export default ({ open, src, alt, closeDialog }: Props) => {
           >
             ✕
           </Dialog.Close>
-          <div className="flex-grow overflow-auto">
+          <div className="flex flex-grow overflow-auto">
             <img
               src={src}
               alt={alt}
