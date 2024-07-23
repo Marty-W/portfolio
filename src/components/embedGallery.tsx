@@ -91,13 +91,13 @@ export default function EmbedGallery({ images }: Props) {
           onClick={scrollPrev}
         >
           <g
-            stroke-linejoin="round"
-            stroke-width="4"
+            strokeLinejoin="round"
+            strokeWidth="4"
             className="stroke-neutral-800"
           >
             <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
             <path
-              stroke-linecap="round"
+              strokeLinecap="round"
               d="m27 33l-9-9l9-9"
               className="group-hover:stroke-neutral-100"
             />
@@ -111,13 +111,13 @@ export default function EmbedGallery({ images }: Props) {
         >
           <g
             stroke="currentColor"
-            stroke-linejoin="round"
-            stroke-width="4"
+            strokeLinejoin="round"
+            strokeWidth="4"
             className="stroke-neutral-800"
           >
             <path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" />
             <path
-              stroke-linecap="round"
+              strokeLinecap="round"
               d="m21 33l9-9l-9-9"
               className="group-hover:stroke-neutral-100"
             />

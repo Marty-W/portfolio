@@ -2,6 +2,7 @@
 import "@fontsource-variable/karla"
 import "@fontsource-variable/inconsolata"
 import { ViewTransitions, fade } from "astro:transitions"
+import SpeedInsights from "@vercel/speed-insights/astro"
 ---
 
 <head>
@@ -17,4 +18,5 @@ import { ViewTransitions, fade } from "astro:transitions"
   <meta name="generator" content={Astro.generator} />
   <title>Martin Weber</title>
   <ViewTransitions transition:animate={fade({ duration: "5s" })} />
+  <SpeedInsights />
 </head>
