@@ -5,7 +5,7 @@ import { getCollection } from "astro:content"
 
 const allProjects = await getCollection("project")
 
-allProjects.sort((a, b) => {
+allProjects.sort((a) => {
   if (a.data.title === "Habitsync") return -1
   return 1
 })

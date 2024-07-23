@@ -39,7 +39,7 @@ export default function EmbedGallery({ images }: Props) {
   }
 
   useEffect(() => {
-    const handleKeyDown = (event: React.KeyboardEvent<Element>) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (!dialogOpen) return
 
       switch (event.key) {

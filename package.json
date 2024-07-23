@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "clean": "rm -rf node_modules && rm -rf .astro && rm -rf dist && rm -rf .package-lock.json"
+    "clean": "rm -rf node_modules && rm -rf .astro && rm -rf dist && rm -rf .package-lock.json",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.2",
