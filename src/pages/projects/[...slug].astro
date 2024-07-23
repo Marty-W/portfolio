@@ -61,7 +61,7 @@ const { Content, headings } = await Astro.props.entry.render()
         </div>
         <div class="flex flex-col gap-y-8 xl:col-start-2">
           <p class="text-lg leading-8">{longDescription}</p>
-          <EmbedGallery images={images} client:only />
+          <EmbedGallery images={images} client:load />
         </div>
         <article
           class="prose prose-neutral lg:prose-lg mx-auto max-w-none select-none xl:col-start-2"
