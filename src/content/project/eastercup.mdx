@@ -3,17 +3,23 @@ title: Eastercup
 id: eastercup
 ghLink: https://github.com/Marty-W/eastercup
 siteLink: https://eastercupklatovy.cz
-description: User-facing website and internal tool for international youth basketball tournament.
+description: User-facing website and internal tool for international basketball tournament.
 coverImage: ./eastercup_cover.png
-longDescription: Website and internal tool for annual youth international basketball tournament in Klatovy written in Typescript and with Next.js.
+longDescription: Website and internal tool for annual international basketball tournament in Klatovy written in Typescript and with Next.js.
 images:
   [
-    { src: ./images/habitsync/1.webp, description: "random ass image" },
-    { src: ./images/habitsync/2.webp, description: "random ass image" },
-    { src: ./images/habitsync/3.webp, description: "random ass image" },
-    { src: ./images/habitsync/1.webp, description: "random ass image" },
-    { src: ./images/habitsync/2.webp, description: "random ass image" },
-    { src: ./images/habitsync/3.webp, description: "random ass image" },
+    { src: ./images/eastercup/landing.png, description: "Landing page" },
+    { src: ./images/eastercup/results.png, description: "Team results" },
+    {
+      src: ./images/eastercup/responsive.png,
+      description: "The app is fully responsive.",
+    },
+    {
+      src: ./images/eastercup/internal_tool.png,
+      description: "Tournament's admin dashboard.",
+    },
+    { src: ./images/eastercup/standings.png, description: "Group standings." },
+    { src: ./images/eastercup/info.png, description: "Info page" },
   ]
 ---
 
@@ -126,9 +132,8 @@ I was actually approached by a family member (who is one of the founders) with a
 
 - I've branched out all the team registration stuff to [state/with-registration](https://github.com/Marty-W/eastercup/tree/state/with-registration). Gotta save bundle space.
   - the branch won't have up to date code, so just rebase
-- implement own backed and ditch uiBakery
+- implement own backend and ditch uiBakery
 - add some interactive animations with framer motion
   - the landing page animation with the bento card is nice, but we really do need more
 - the font is questionable, especially for long text
   - it was chosen by the designer, but I think we need to change it
-- use github issues for features?

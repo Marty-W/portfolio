@@ -7,9 +7,9 @@ interface Props {
 const { when, title } = Astro.props
 ---
 
-<div class="space-y-2 px-2 py-4 hover:bg-neutral-100">
+<div class="space-y-2 px-2 py-4">
   <div class="flex w-full flex-col">
-    <h4 class="text-lg font-semibold">{title}</h4>
+    <h4 class="text-lg font-semibold text-red-500">{title}</h4>
     <span>{when}</span>
   </div>
   <div>

@@ -2,12 +2,15 @@
 interface Props {
   href: string
   text: string
+  baseSize?: boolean
 }
 
-const { href, text } = Astro.props
+const { href, text, baseSize } = Astro.props
 ---
 
-<a class="text-2xl" href={href}>{text}</a>
+<a class:list={["text-2xl", baseSize && "text-base xl:text-lg"]} href={href}
+  >{text}</a
+>
 
 <style>
   a {

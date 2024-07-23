@@ -64,17 +64,22 @@ export default function EmbedGallery({ images }: Props) {
   return (
     <div className="animate-fadein flex flex-col space-y-4">
       <div className="max-h-[40vh] overflow-hidden" ref={emblaRef}>
-        <div className="grid auto-cols-[60%] grid-flow-col gap-x-4">
+        <div className="grid auto-cols-[60%] grid-flow-col">
           {images.map((image, index) => (
-            <img
-              src={image.src.src}
-              alt={image.description}
-              onClick={() => handleImageClick(index)}
-              style={{
-                flex: "0 0 100%",
-                minWidth: 0,
-              }}
-            />
+            <div
+              key={index}
+              className={`px-2 ${index === 0 ? "pl-2" : ""} ${index === images.length - 1 ? "pr-2" : ""}`}
+            >
+              <img
+                src={image.src.src}
+                alt={image.description}
+                onClick={() => handleImageClick(index)}
+                className="h-auto w-full"
+                style={{
+                  minWidth: 0,
+                }}
+              />
+            </div>
           ))}
         </div>
       </div>

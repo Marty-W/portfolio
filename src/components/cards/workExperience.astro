@@ -1,36 +1,50 @@
 ---
 import Card from "@components/bentoCard.astro"
 import Workplace from "@components/workplace.astro"
+import ProjectLink from "@components/projectLink.astro"
 ---
 
-<Card title="work experience" className="lg:h-fit">
-  <div class="divide-y-[1px] divide-neutral-200">
+<Card
+  title="work experience"
+  className="lg:flex lg:h-full lg:flex-col"
+  contentClass="lg:flex lg:flex-1"
+>
+  <div
+    class="divide-y-[1px] divide-neutral-200 lg:flex lg:flex-col lg:justify-between"
+  >
     <Workplace when="(2020.10 - 2022.05.)" title="socialbakers (now emplify)">
       At Socialbakers, I worked as a JavaScript developer on the Dashboard
       product, an analytical hub designed to give users a comprehensive overview
       of their social media performance. The Dashboard allowed users to create
       customizable dashboards with multiple widgets to monitor key metrics
-      across various social networks and profiles. This tool was essential for
-      optimizing customer engagement and social media strategies.
+      across various social networks and profiles.
     </Workplace>
     <Workplace title="01People" when="(2022.4. - 2022.8.)">
-      At 01People, I worked as a Front-End Developer on Hilbi, a platform
-      designed to facilitate healthcare interactions. My primary focus was
-      developing the front-end features and the React Native app, which enabled
-      functionalities such as patient-doctor communication, medication
+      At 01People, I worked as a typescript dev on Hilbi, a platform designed to
+      facilitate healthcare interactions. My primary focus was developing the
+      front-end features on the web app and also the React Native app, which
+      enabled functionalities such as patient-doctor communication, medication
       prescriptions, participation in health studies, and tracking of vital
       data.
     </Workplace>
     <Workplace title="health issues" when="(2022.8. - 2023.8.)">
-      I had to quit work for some time in order to focus on my health. Actually
-      I wasn't even able to work. But I've been trying to keep up with the tech
-      industry, kept learning and doing some side projects. For example (link to
-      the HabitSync) was developed during this time.
+      I had to quit work for some time because of serious health issues. But
+      I've been trying to keep up with the tech industry, kept learning and
+      doing some side projects. For example <ProjectLink
+        href="/projects/habitsync"
+        text="Habitsync"
+        baseSize
+      />
+      was developed during this time.
     </Workplace>
     <Workplace title="freelance" when="(2023.10 - 2024.05)">
       I've been freelancing for a while now. For example I've been working on an
       app for an app for international basketball tournament. You can find more
-      about it here (add link to Eastercup).
+      about it here <ProjectLink
+        href="/projects/eastercup"
+        text="Eastercup"
+        baseSize
+      />.
     </Workplace>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" slot="icon">

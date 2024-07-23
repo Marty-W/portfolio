@@ -9,7 +9,7 @@ export default {
     extend: {
       keyframes: {
         land: {
-          "0%": { transform: "translateY(-3%)", opacity: 0, rotate: "-0.5deg" },
+          "0%": { transform: "translateY(-1%)", opacity: 0, rotate: "-0.1deg" },
           "100%": { transform: "translateY(0%)", opacity: 1, rotate: "0deg" },
         },
         fadein: {
